@@ -1,0 +1,52 @@
+<nav class="flex items-center justify-between flex-wrap bg-gray-800 border-gray-900 p-6">
+  <div class="flex items-center flex-shrink-0 text-white mr-6">
+    <%= link_to root_path do %>
+      <span class="font-semibold text-xl tracking-tight">Mainô</span>
+    <% end %>
+  </div>
+
+  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div class="text-sm lg:flex-grow">
+      <% if !user_signed_in? %>
+        <%= link_to "Login", new_user_session_path, class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200
+        hover:text-white mr-4"  %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200
+        hover:text-white mr-4"  %>
+      <% end %>
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+        Examples
+      </a>
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+        Blog
+      </a>
+    </div>
+    <% if user_signed_in? %>
+      <div>
+        <button id="user-menu-button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-700 text-sm font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+<!--        <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>-->
+          Menu
+          <svg class="-mr-1 ml-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+          </svg>
+        </button>
+
+        <div id="user-menu" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button">
+          <div class="py-1">
+            <%= link_to "Profile", edit_user_registration_path, class: "block px-4 py-2 text-sm text-white
+            hover:bg-gray-600" %>
+            <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete } , class: "block px-4 py-2
+            text-sm
+            text-white
+            hover:bg-gray-600", method: :delete %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</nav>
+<script>
+    document.getElementById('user-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('user-menu');
+        menu.classList.toggle('hidden');
+    });
+</script>

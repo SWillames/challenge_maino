@@ -1,0 +1,5 @@
+EMAIL_FORMAT = /
+\A
+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}
+\Z
+/xi
